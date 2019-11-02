@@ -27,6 +27,11 @@ public class GreenCompanionDTO {
     @Column(name = "updated_at", nullable = false)
     private Date updatedAt;
 
+
+    @OneToMany()
+    @JoinTable(name = "good_companions")
+    private Set<GreenCompanionDTO> goodCompanions;
+
     public GreenCompanionDTO() { }
 
     public Long getId() {
@@ -99,6 +104,22 @@ public class GreenCompanionDTO {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Set<GreenCompanionDTO> getGoodCompanions() {
+        return goodCompanions;
+    }
+
+    public void setGoodCompanions(Set<GreenCompanionDTO> goodCompanions) {
+        this.goodCompanions = goodCompanions;
+    }
+
+    public void addGoodCompanion(GreenCompanionDTO goodCompanion) {
+        this.goodCompanions.add(goodCompanion);
+    }
+
+    public void removeGoodCompanion(GreenCompanionDTO goodCompanion) {
+        this.goodCompanions.remove(goodCompanion);
     }
 
     public Date getCreatedAt() {

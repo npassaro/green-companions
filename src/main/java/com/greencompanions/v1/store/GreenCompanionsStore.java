@@ -1,7 +1,7 @@
 package com.greencompanions.v1.store;
 
-import com.greencompanions.v1.rest.GreenCompanionsResource;
-import org.jboss.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -12,8 +12,7 @@ import java.util.List;
 
 @ApplicationScoped
 public class GreenCompanionsStore {
-    private static final Logger LOG = Logger.getLogger(GreenCompanionsResource.class);
-
+    private static final Logger LOG = LoggerFactory.getLogger(GreenCompanionsStore.class);
     @Inject
     EntityManager em;
 
@@ -30,9 +29,22 @@ public class GreenCompanionsStore {
 
     @Transactional
     public GreenCompanionDTO create(GreenCompanionDTO companion) {
-        LOG.info("=====> COMPANION: " + companion.getName() + " | " + companion.getDescription());
-        LOG.info("=====> DTO: " + companion);
         em.persist(companion);
         return companion;
     }
+
+    @Transactional
+    public GreenCompanionDTO addGoodCompanion(Long id, GreenCompanionDTO goodCompanion) {
+        GreenCompanionDTO companion = em.find(GreenCompanionDTO.class, id);
+        companion.addGoodCompanion(goodCompanion);
+        return companion;
+    }
+
+    @Transactional
+    public GreenCompanionDTO removeGoodCompanion(Long id, GreenCompanionDTO goodCompanion) {
+        GreenCompanionDTO companion = em.find(GreenCompanionDTO.class, id);
+        companion.removeGoodCompanion(goodCompanion);
+        return companion;
+    }
+
 }

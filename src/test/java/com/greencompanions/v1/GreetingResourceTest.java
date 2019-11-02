@@ -1,4 +1,4 @@
-package com.greencompanions;
+package com.greencompanions.v1;
 
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.Test;

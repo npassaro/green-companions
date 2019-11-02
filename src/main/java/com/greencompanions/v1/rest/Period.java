@@ -1,4 +1,4 @@
-package com.greencompanions;
+package com.greencompanions.v1.rest;
 
 import java.util.Date;
 

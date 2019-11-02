@@ -43,5 +43,10 @@ public class GreenCompanionsResource {
         return new GreenCompanion(store.addGoodCompanion(id, companion.toDto()));
     }
 
+    @POST
+    @Path("/{id}/bad-companions")
+    public GreenCompanion addBadCompanion(@PathParam("id") Long id, GreenCompanion companion) {
+        return new GreenCompanion(store.addBadCompanion(id, companion.toDto()));
+    }
 }
 

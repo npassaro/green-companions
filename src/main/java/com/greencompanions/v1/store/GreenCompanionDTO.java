@@ -32,6 +32,10 @@ public class GreenCompanionDTO {
     @JoinTable(name = "good_companions")
     private Set<GreenCompanionDTO> goodCompanions;
 
+    @OneToMany()
+    @JoinTable(name = "bad_companions")
+    private Set<GreenCompanionDTO> badCompanions;
+
     public GreenCompanionDTO() { }
 
     public Long getId() {
@@ -120,6 +124,22 @@ public class GreenCompanionDTO {
 
     public void removeGoodCompanion(GreenCompanionDTO goodCompanion) {
         this.goodCompanions.remove(goodCompanion);
+    }
+
+    public Set<GreenCompanionDTO> getBadCompanions() {
+        return badCompanions;
+    }
+
+    public void setBadCompanions(Set<GreenCompanionDTO> badCompanions) {
+        this.badCompanions = badCompanions;
+    }
+
+    public void addBadCompanion(GreenCompanionDTO badCompanion) {
+        this.badCompanions.add(badCompanion);
+    }
+
+    public void removeBadCompanion(GreenCompanionDTO badCompanion) {
+        this.badCompanions.remove(badCompanion);
     }
 
     public Date getCreatedAt() {

@@ -47,4 +47,10 @@ public class GreenCompanionsStore {
         return companion;
     }
 
+    @Transactional
+    public GreenCompanionDTO addBadCompanion(Long id, GreenCompanionDTO badCompanion) {
+        GreenCompanionDTO companion = em.find(GreenCompanionDTO.class, id);
+        companion.addBadCompanion(badCompanion);
+        return companion;
+    }
 }

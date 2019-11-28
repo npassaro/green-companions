@@ -2,14 +2,16 @@ package com.greencompanions.v1.rest;
 
 import com.greencompanions.v1.store.GreenCompanionDTO;
 
-import java.util.Date;
+import java.util.Arrays;
 import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class GreenCompanion {
     private Long id;
-    private Period sowingPeriod;
-    private Period growPeriod;
-    private Period harvestPeriod;
+    private Set<Integer> sowPeriod;
+    private Set<Integer> growPeriod;
+    private Set<Integer> harvestPeriod;
     private String name;
     private String description;
 
@@ -20,9 +22,9 @@ public class GreenCompanion {
         this.id = dto.getId();
         this.name = dto.getName();
         this.description = dto.getDescription();
-        this.setSowingPeriod(dto.getSowingPeriodStart(), dto.getSowingPeriodEnd());
-        this.setGrowPeriod(dto.getGrowPeriodStart(), dto.getGrowPeriodEnd());
-        this.setHarvestPeriod(dto.getHarvestPeriodStart(), dto.getHarvestPeriodEnd());
+        this.setSowPeriod(fromCommaSeparated(dto.getSowPeriod()));
+        this.setGrowPeriod(fromCommaSeparated(dto.getGrowPeriod()));
+        this.setHarvestPeriod(fromCommaSeparated(dto.getHarvestPeriod()));
     }
 
     public GreenCompanionDTO toDto() {
@@ -30,13 +32,17 @@ public class GreenCompanion {
         dto.setId(this.id);
         dto.setName(this.name);
         dto.setDescription(this.description);
-        dto.setSowingPeriodStart(this.sowingPeriod.getStart());
-        dto.setSowingPeriodEnd(this.sowingPeriod.getEnd());
-        dto.setGrowPeriodStart(this.growPeriod.getStart());
-        dto.setGrowPeriodEnd(this.growPeriod.getEnd());
-        dto.setHarvestPeriodStart(this.harvestPeriod.getStart());
-        dto.setHarvestPeriodEnd(this.harvestPeriod.getEnd());
+        dto.setSowPeriod(toCommaSeparated(this.sowPeriod));
+        dto.setGrowPeriod(toCommaSeparated(this.growPeriod));
+        dto.setHarvestPeriod(toCommaSeparated(this.harvestPeriod));
         return dto;
+    }
+
+    private Set<Integer> fromCommaSeparated(String items) {
+        return Arrays.stream(items.split(",")).map(Integer::new).collect(Collectors.toSet());
+    }
+    private String toCommaSeparated(Set<Integer> items) {
+        return String.join(",", items.stream().map(Object::toString).collect(Collectors.toList()));
     }
 
     public Long getId() {
@@ -47,40 +53,28 @@ public class GreenCompanion {
         this.id = id;
     }
 
-    public Period getSowingPeriod() {
-        return sowingPeriod;
+    public Set<Integer> getSowPeriod() {
+        return sowPeriod;
     }
 
-    public void setSowingPeriod(Period sowingPeriod) {
-        this.sowingPeriod = sowingPeriod;
+    public void setSowPeriod(Set<Integer> sowPeriod) {
+        this.sowPeriod = sowPeriod;
     }
 
-    public void setSowingPeriod(Date start, Date end) {
-        this.sowingPeriod = new Period(start, end);;
-    }
-
-    public Period getGrowPeriod() {
+    public Set<Integer> getGrowPeriod() {
         return growPeriod;
     }
 
-    public void setGrowPeriod(Period growPeriod) {
+    public void setGrowPeriod(Set<Integer> growPeriod) {
         this.growPeriod = growPeriod;
     }
 
-    public void setGrowPeriod(Date start, Date end) {
-        this.growPeriod = new Period(start, end);
-    }
-
-    public Period getHarvestPeriod() {
+    public Set<Integer> getHarvestPeriod() {
         return harvestPeriod;
     }
 
-    public void setHarvestPeriod(Period harvestPeriod) {
+    public void setHarvestPeriod(Set<Integer> harvestPeriod) {
         this.harvestPeriod = harvestPeriod;
-    }
-
-    public void setHarvestPeriod(Date start, Date end) {
-        this.harvestPeriod = new Period(start, end);
     }
 
     public String getName() {

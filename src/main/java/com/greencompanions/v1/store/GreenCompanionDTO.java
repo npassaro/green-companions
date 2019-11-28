@@ -10,12 +10,11 @@ public class GreenCompanionDTO {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id", updatable = false, nullable = false)
     private Long id;
-    private Date sowingPeriodStart;
-    private Date sowingPeriodEnd;
-    private Date growPeriodStart;
-    private Date growPeriodEnd;
-    private Date harvestPeriodStart;
-    private Date harvestPeriodEnd;
+    private String sowPeriod;
+    private String growPeriod;
+    private String harvestPeriod;
+
+    @Column(unique = true)
     private String name;
     private String description;
 
@@ -29,10 +28,12 @@ public class GreenCompanionDTO {
 
 
     @OneToMany()
+    @Column(unique = true)
     @JoinTable(name = "good_companions")
     private Set<GreenCompanionDTO> goodCompanions;
 
     @OneToMany()
+    @Column(unique = true)
     @JoinTable(name = "bad_companions")
     private Set<GreenCompanionDTO> badCompanions;
 
@@ -46,52 +47,29 @@ public class GreenCompanionDTO {
         this.id = id;
     }
 
-    public Date getSowingPeriodStart() {
-        return sowingPeriodStart;
+
+    public String getSowPeriod() {
+        return sowPeriod;
     }
 
-    public void setSowingPeriodStart(Date sowingPeriodStart) {
-        this.sowingPeriodStart = sowingPeriodStart;
+    public void setSowPeriod(String sowPeriod) {
+        this.sowPeriod = sowPeriod;
     }
 
-    public Date getSowingPeriodEnd() {
-        return sowingPeriodEnd;
+    public String getGrowPeriod() {
+        return growPeriod;
     }
 
-    public void setSowingPeriodEnd(Date sowingPeriodEnd) {
-        this.sowingPeriodEnd = sowingPeriodEnd;
+    public void setGrowPeriod(String growPeriod) {
+        this.growPeriod = growPeriod;
     }
 
-    public Date getGrowPeriodStart() {
-        return growPeriodStart;
+    public String getHarvestPeriod() {
+        return harvestPeriod;
     }
 
-    public void setGrowPeriodStart(Date growPeriodStart) {
-        this.growPeriodStart = growPeriodStart;
-    }
-
-    public Date getGrowPeriodEnd() {
-        return growPeriodEnd;
-    }
-
-    public void setGrowPeriodEnd(Date growPeriodEnd) {
-        this.growPeriodEnd = growPeriodEnd;
-    }
-
-    public Date getHarvestPeriodStart() {
-        return harvestPeriodStart;
-    }
-
-    public void setHarvestPeriodStart(Date harvestPeriodStart) {
-        this.harvestPeriodStart = harvestPeriodStart;
-    }
-
-    public Date getHarvestPeriodEnd() {
-        return harvestPeriodEnd;
-    }
-
-    public void setHarvestPeriodEnd(Date harvestPeriodEnd) {
-        this.harvestPeriodEnd = harvestPeriodEnd;
+    public void setHarvestPeriod(String harvestPeriod) {
+        this.harvestPeriod = harvestPeriod;
     }
 
     public String getName() {

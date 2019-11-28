@@ -13,6 +13,7 @@ import java.util.List;
 @ApplicationScoped
 public class GreenCompanionsStore {
     private static final Logger LOG = LoggerFactory.getLogger(GreenCompanionsStore.class);
+
     @Inject
     EntityManager em;
 

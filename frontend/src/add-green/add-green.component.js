@@ -49,8 +49,7 @@ export class AddGreen extends React.Component {
       throw response;
     })
     .then(green => this.props.onNewGreen(green))
-    .catch(error => error.text())
-    .then(error => this.props.onError(error));
+    .catch(error => this.props.onError('Failed to add a new green. Make sure the name is unique and all mandatory fields are set?'))
   }
 
   render() {

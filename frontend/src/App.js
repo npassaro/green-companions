@@ -28,17 +28,23 @@ class App extends React.Component {
         'Accept': 'application/json'
       }
     })
-    .then(response => response.json())
-    .then(greens => this.setState({ greens }));
+    .then(response => {
+      if(response.ok) {
+        return response.json()
+      }
+      throw response;
+    })
+    .then(greens => this.setState({ greens }))
+    .catch(error => this.handleError('Could not fetch greens. Server unavailable.'));
   }
 
   handleAddGreen(green) {
     const greens = this.state.greens.concat(green).sort((a, b)=> a.id - b.id);
-    this.setState({ greens });
+    this.setState({ greens, error: null });
   }
 
   handleError(error) {
-    this.setState({ error: 'An error occurred when saving. Maybe a repeated name?'});
+    this.setState({ error: error});
   }
 
   handleDismiss() {

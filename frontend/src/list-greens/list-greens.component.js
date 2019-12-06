@@ -1,11 +1,11 @@
 import React from 'react';
 import './list-greens.scss';
-import { MONTHS } from '../constants';
+import { ListGreensItem } from './list-greens-item.component';
 
-export const ListGreens = ({ greens=[] }) =>
+export const ListGreens = ({ greens=[], selectedGreen, onClick }) =>
   (
-    <table className="table ListGreens_table">
-      <thead className="ListGreens_row">
+    <table className="table table-striped table-hover ListGreens_table">
+      <thead className="thead-dark ListGreens_row">
         <tr>
           <th className="ListGreens_cell" scope="col">
             Name
@@ -26,28 +26,11 @@ export const ListGreens = ({ greens=[] }) =>
       </thead>
       <tbody>
       {
-        greens.map(green => (
-          <tr key={green.id} className="ListGreens_row">
-            <td className="ListGreens_cell">
-              {green.name}
-            </td>
-            <td className="ListGreens_cell">
-              {green.description}
-            </td>
-            <td className="ListGreens_cell">
-              {green.sowPeriod.map(period => <span key={period}>{getMonthName(period)}</span>)}
-            </td>
-            <td className="ListGreens_cell">
-              {green.growPeriod.map(period => <span key={period}>{getMonthName(period)}</span>)}
-            </td>
-            <td className="ListGreens_cell">
-              {green.harvestPeriod.map(period => <span key={period}>{getMonthName(period)}</span>)}
-            </td>
-          </tr>
-        ))
+        greens.map(green => {
+          const isSelected = selectedGreen && selectedGreen.id === green.id;
+          return <ListGreensItem key={green.id} green={green} onClick={onClick} isSelected={isSelected} />
+        })
       }
       </tbody>
     </table>
   );
-
-const getMonthName = (period) => (Object.values(MONTHS).find(m => m.key === period).name)

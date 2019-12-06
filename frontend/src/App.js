@@ -9,6 +9,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       greens: [],
+      selectedGreen: null,
       error: null
     };
 
@@ -16,6 +17,7 @@ class App extends React.Component {
     this.handleAddGreen = this.handleAddGreen.bind(this);
     this.handleError = this.handleError.bind(this);
     this.handleDismiss = this.handleDismiss.bind(this);
+    this.handleSelectGreen = this.handleSelectGreen.bind(this);
   }
 
   componentDidMount() {
@@ -51,14 +53,22 @@ class App extends React.Component {
     this.setState({ error: null});
   }
 
+  handleSelectGreen(green) {
+    if(this.state.selectedGreen && green.id === this.state.selectedGreen.id) {
+      this.setState({ selectedGreen: null });
+    } else {
+      this.setState({ selectedGreen: green });
+    }
+  }
+
   render() {
-    const { greens, error } = this.state;
+    const { greens, error, selectedGreen } = this.state;
     return (
       <div>
         <ErrorAlert message={error} onDismiss={this.handleDismiss}/>
         <div className="container App">
               <AddGreen onNewGreen={this.handleAddGreen} onError={this.handleError}></AddGreen>
-              <ListGreens greens={greens}></ListGreens>
+              <ListGreens greens={greens} onClick={this.handleSelectGreen} selectedGreen={selectedGreen}></ListGreens>
         </div>
       </div>
     );

@@ -78,38 +78,40 @@ export class AddGreen extends React.Component {
             onChange={this.handleChange}
           />
         </div>
-        <div className="form-group">
-          <fieldset className="AddGreen_fieldset">
-            <legend>Sow Period</legend>
-            <Period
-              name="sowPeriod"
-              className="form-control"
-              checkedMonths={this.state.sowPeriod}
-              onChange={this.handlePeriodChange}
-            />
-          </fieldset>
-        </div>
-        <div className="form-group">
-          <fieldset className="AddGreen_fieldset">
-            <legend>Grow Period</legend>
-            <Period
-              name="growPeriod"
-              className="form-control"
-              checkedMonths={this.state.growPeriod}
-              onChange={this.handlePeriodChange}
-            />
-          </fieldset>
-        </div>
-        <div className="form-group">
-          <fieldset className="AddGreen_fieldset">
-            <legend>Harvest Period</legend>
-            <Period
-              name="harvestPeriod"
-              className="form-control"
-              checkedMonths={this.state.harvestPeriod}
-              onChange={this.handlePeriodChange}
-            />
-          </fieldset>
+        <div className="row">
+          <div className="form-group col">
+            <fieldset className="AddGreen_fieldset">
+              <legend className="h5">Sow Period</legend>
+              <Period
+                name="sowPeriod"
+                className="form-control"
+                checkedMonths={this.state.sowPeriod}
+                onChange={this.handlePeriodChange}
+              />
+            </fieldset>
+          </div>
+          <div className="form-group col">
+            <fieldset className="AddGreen_fieldset">
+              <legend className="h5">Grow Period</legend>
+              <Period
+                name="growPeriod"
+                className="form-control"
+                checkedMonths={this.state.growPeriod}
+                onChange={this.handlePeriodChange}
+              />
+            </fieldset>
+          </div>
+          <div className="form-group col">
+            <fieldset className="AddGreen_fieldset">
+              <legend className="h5">Harvest Period</legend>
+              <Period
+                name="harvestPeriod"
+                className="form-control"
+                checkedMonths={this.state.harvestPeriod}
+                onChange={this.handlePeriodChange}
+              />
+            </fieldset>
+          </div>
         </div>
         <input className="btn btn-success AddGreen_button" type="submit" value="Submit" />
       </form>

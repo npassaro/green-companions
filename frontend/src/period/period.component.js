@@ -34,16 +34,18 @@ export class Period extends React.Component {
   render() {
     const { checkedMonths } = this.props;
     return (
-      <React.Fragment>
-        {
           Object.keys(MONTHS).map(month => (
-            <label key={MONTHS[month].key}>
-              {MONTHS[month].name}
-              <Checkbox name={month} checked={this.isChecked(MONTHS[month].key, checkedMonths)} onChange={this.handleChange} />
-            </label>
+            <div key={month} className="form-check">
+              <Checkbox
+                name={month}
+                checked={this.isChecked(MONTHS[month].key, checkedMonths)}
+                onChange={this.handleChange}
+              />
+              <label className="form-check-label" key={MONTHS[month].key} htmlFor={month}>
+                {MONTHS[month].name}
+              </label>
+            </div>
           ))
-        }
-      </React.Fragment>
     );
   }
 }

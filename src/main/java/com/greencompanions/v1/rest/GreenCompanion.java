@@ -1,34 +1,43 @@
 package com.greencompanions.v1.rest;
 
-import com.greencompanions.v1.store.GreenCompanionDTO;
+import com.greencompanions.v1.store.CompanionDTO;
+import com.greencompanions.v1.store.GreenDTO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 public class GreenCompanion {
+    private static final Logger LOG = LoggerFactory.getLogger(GreenCompanion.class);
     private Long id;
     private Set<Integer> sowPeriod;
     private Set<Integer> growPeriod;
     private Set<Integer> harvestPeriod;
     private String name;
     private String description;
+    private Set<Long> goodCompanionsIds;
+    private Set<Long> badCompanionsIds;
 
     public GreenCompanion() {
     }
 
-    public GreenCompanion(GreenCompanionDTO dto) {
+    public GreenCompanion(GreenDTO dto) {
         this.id = dto.getId();
         this.name = dto.getName();
         this.description = dto.getDescription();
-        this.setSowPeriod(fromCommaSeparated(dto.getSowPeriod()));
-        this.setGrowPeriod(fromCommaSeparated(dto.getGrowPeriod()));
-        this.setHarvestPeriod(fromCommaSeparated(dto.getHarvestPeriod()));
+        this.sowPeriod = fromCommaSeparated(dto.getSowPeriod());
+        this.growPeriod = fromCommaSeparated(dto.getGrowPeriod());
+        this.harvestPeriod = fromCommaSeparated(dto.getHarvestPeriod());
+        this.goodCompanionsIds = toSetOfIds(dto.getGoodCompanions());
+        this.badCompanionsIds = toSetOfIds(dto.getBadCompanions());
     }
 
-    public GreenCompanionDTO toDto() {
-        GreenCompanionDTO dto = new GreenCompanionDTO();
+    public GreenDTO toDto() {
+        GreenDTO dto = new GreenDTO();
         dto.setId(this.id);
         dto.setName(this.name);
         dto.setDescription(this.description);
@@ -36,6 +45,15 @@ public class GreenCompanion {
         dto.setGrowPeriod(toCommaSeparated(this.growPeriod));
         dto.setHarvestPeriod(toCommaSeparated(this.harvestPeriod));
         return dto;
+    }
+
+    private Set<Long> toSetOfIds(Set<CompanionDTO> companions) {
+        return companions == null ?
+                Collections.emptySet() :
+                companions.stream()
+                        .map(CompanionDTO::getCompanion)
+                        .map(GreenDTO::getId)
+                        .collect(Collectors.toSet());
     }
 
     private Set<Integer> fromCommaSeparated(String items) {
@@ -91,6 +109,14 @@ public class GreenCompanion {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Set<Long> getGoodCompanionsIds() {
+        return goodCompanionsIds;
+    }
+
+    public Set<Long> getBadCompanionsIds() {
+        return badCompanionsIds;
     }
 
     @Override

@@ -1,11 +1,13 @@
 package com.greencompanions.v1.store;
 
 import javax.persistence.*;
-import java.util.*;
+import java.util.Date;
+import java.util.Objects;
+import java.util.Set;
 
-@Entity(name = "green_companions")
-@Table(name = "green_companions")
-public class GreenCompanionDTO {
+@Entity(name = "greens")
+@Table(name = "greens")
+public class GreenDTO {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id", updatable = false, nullable = false)
@@ -27,17 +29,13 @@ public class GreenCompanionDTO {
     private Date updatedAt;
 
 
-    @OneToMany()
-    @Column(unique = true)
-    @JoinTable(name = "good_companions")
-    private Set<GreenCompanionDTO> goodCompanions;
+    @OneToMany(targetEntity=CompanionDTO.class, mappedBy="companion", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+    private Set<CompanionDTO> goodCompanions;
 
-    @OneToMany()
-    @Column(unique = true)
-    @JoinTable(name = "bad_companions")
-    private Set<GreenCompanionDTO> badCompanions;
+    @OneToMany(targetEntity=CompanionDTO.class, mappedBy="companion", fetch=FetchType.EAGER,  cascade = CascadeType.ALL)
+    private Set<CompanionDTO> badCompanions;
 
-    public GreenCompanionDTO() { }
+    public GreenDTO() { }
 
     public Long getId() {
         return id;
@@ -88,35 +86,35 @@ public class GreenCompanionDTO {
         this.description = description;
     }
 
-    public Set<GreenCompanionDTO> getGoodCompanions() {
+    public Set<CompanionDTO> getGoodCompanions() {
         return goodCompanions;
     }
 
-    public void setGoodCompanions(Set<GreenCompanionDTO> goodCompanions) {
+    public void setGoodCompanions(Set<CompanionDTO> goodCompanions) {
         this.goodCompanions = goodCompanions;
     }
 
-    public void addGoodCompanion(GreenCompanionDTO goodCompanion) {
+    public void addGoodCompanion(CompanionDTO goodCompanion) {
         this.goodCompanions.add(goodCompanion);
     }
 
-    public void removeGoodCompanion(GreenCompanionDTO goodCompanion) {
+    public void removeGoodCompanion(CompanionDTO goodCompanion) {
         this.goodCompanions.remove(goodCompanion);
     }
 
-    public Set<GreenCompanionDTO> getBadCompanions() {
+    public Set<CompanionDTO> getBadCompanions() {
         return badCompanions;
     }
 
-    public void setBadCompanions(Set<GreenCompanionDTO> badCompanions) {
+    public void setBadCompanions(Set<CompanionDTO> badCompanions) {
         this.badCompanions = badCompanions;
     }
 
-    public void addBadCompanion(GreenCompanionDTO badCompanion) {
+    public void addBadCompanion(CompanionDTO badCompanion) {
         this.badCompanions.add(badCompanion);
     }
 
-    public void removeBadCompanion(GreenCompanionDTO badCompanion) {
+    public void removeBadCompanion(CompanionDTO badCompanion) {
         this.badCompanions.remove(badCompanion);
     }
 
@@ -148,11 +146,11 @@ public class GreenCompanionDTO {
 
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof GreenCompanionDTO)) {
+        if (!(obj instanceof GreenDTO)) {
             return false;
         }
 
-        GreenCompanionDTO other = (GreenCompanionDTO) obj;
+        GreenDTO other = (GreenDTO) obj;
 
         return Objects.equals(other.name, this.name)
                 && Objects.equals(other.id, this.id);

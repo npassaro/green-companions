@@ -1,6 +1,6 @@
 package com.greencompanions.v1.rest;
 
-import com.greencompanions.v1.store.GreenCompanionsStore;
+import com.greencompanions.v1.store.GreenStore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 public class GreenCompanionsResource {
     private static final Logger LOG = LoggerFactory.getLogger(GreenCompanionsResource.class);
     @Inject
-    private GreenCompanionsStore store;
+    private GreenStore store;
 
     @GET
     public List<GreenCompanion> getAllCompanions() {

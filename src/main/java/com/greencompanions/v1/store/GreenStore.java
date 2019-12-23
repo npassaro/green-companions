@@ -29,37 +29,38 @@ public class GreenStore {
     }
 
     @Transactional
-    public GreenDTO create(GreenDTO companion) {
-        em.persist(companion);
-        return companion;
-    }
-
-    @Transactional
-    public GreenDTO addGoodCompanion(Long id, GreenDTO goodCompanion) {
-        GreenDTO green = em.find(GreenDTO.class, id);
-        CompanionDTO companion = new CompanionDTO();
-        companion.setGreen(green);
-        companion.setCompanion(goodCompanion);
-        companion.setCompanionType(CompanionType.GOOD);
-        green.addGoodCompanion(companion);
+    public GreenDTO create(GreenDTO green) {
+        em.persist(green);
         return green;
     }
 
     @Transactional
-    public GreenDTO removeGoodCompanion(Long id, GreenDTO goodCompanion) {
-        GreenDTO companion = em.find(GreenDTO.class, id);
-        // companion.removeGoodCompanion(goodCompanion);
-        return companion;
+    public GreenDTO addGoodCompanion(Long greenId, GreenDTO companion) {
+        GreenDTO green = em.find(GreenDTO.class, greenId);
+        GreenDTO greenCompanion = em.find(GreenDTO.class, companion.getId());
+        green.addGoodCompanion(greenCompanion);
+        return green;
     }
 
     @Transactional
-    public GreenDTO addBadCompanion(Long id, GreenDTO badCompanion) {
-        GreenDTO green = em.find(GreenDTO.class, id);
-        CompanionDTO companion = new CompanionDTO();
-        companion.setGreen(green);
-        companion.setCompanion(badCompanion);
-        companion.setCompanionType(CompanionType.BAD);
-        green.addGoodCompanion(companion);
+    public GreenDTO removeGoodCompanion(Long greenId, GreenDTO goodCompanion) {
+        GreenDTO green = em.find(GreenDTO.class, greenId);
+        green.removeGoodCompanion(goodCompanion);
+        return green;
+    }
+
+    @Transactional
+    public GreenDTO addBadCompanion(Long greenId, GreenDTO companion) {
+        GreenDTO green = em.find(GreenDTO.class, greenId);
+        GreenDTO greenCompanion = em.find(GreenDTO.class, companion.getId());
+        green.addBadCompanion(greenCompanion);
+        return green;
+    }
+
+    @Transactional
+    public GreenDTO removeBadCompanion(Long greenId, GreenDTO badCompanion) {
+        GreenDTO green = em.find(GreenDTO.class, greenId);
+        green.removeBadCompanion(badCompanion);
         return green;
     }
 }

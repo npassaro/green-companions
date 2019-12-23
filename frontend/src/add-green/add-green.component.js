@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './add-green.scss';
 
 import { Period } from '../period/period.component';
@@ -49,7 +50,7 @@ export class AddGreen extends React.Component {
       throw response;
     })
     .then(green => this.props.onNewGreen(green))
-    .catch(error => this.props.onError('Failed to add a new green. Make sure the name is unique and all mandatory fields are set?'))
+    .catch(() => this.props.onError('Failed to add a new green. Make sure the name is unique and all mandatory fields are set?'))
   }
 
   render() {
@@ -118,3 +119,8 @@ export class AddGreen extends React.Component {
     );
   }
 }
+
+AddGreen.propTypes = {
+  onNewGreen: PropTypes.object.isRequired,
+  onError: PropTypes.object.isRequired
+};

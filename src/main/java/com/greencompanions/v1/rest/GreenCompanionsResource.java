@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
+import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
@@ -33,20 +34,32 @@ public class GreenCompanionsResource {
     }
 
     @POST
-    public GreenCompanion createCompanion(GreenCompanion companion) {
+    public GreenCompanion createCompanion(@Valid GreenCompanion companion) {
         return new GreenCompanion(store.create(companion.toDto()));
     }
 
     @POST
     @Path("/{id}/good-companions")
-    public GreenCompanion addGoodCompanion(@PathParam("id") Long id, GreenCompanion companion) {
+    public GreenCompanion addGoodCompanion(@PathParam("id") Long id, @Valid GreenCompanion companion) {
         return new GreenCompanion(store.addGoodCompanion(id, companion.toDto()));
+    }
+
+    @DELETE
+    @Path("/{id}/good-companions")
+    public GreenCompanion deleteGoodCompanion(@PathParam("id") Long id, @Valid GreenCompanion companion) {
+        return new GreenCompanion(store.removeGoodCompanion(id, companion.toDto()));
     }
 
     @POST
     @Path("/{id}/bad-companions")
-    public GreenCompanion addBadCompanion(@PathParam("id") Long id, GreenCompanion companion) {
+    public GreenCompanion addBadCompanion(@PathParam("id") Long id, @Valid GreenCompanion companion) {
         return new GreenCompanion(store.addBadCompanion(id, companion.toDto()));
+    }
+
+    @DELETE
+    @Path("/{id}/bad-companions")
+    public GreenCompanion deleteBadCompanion(@PathParam("id") Long id, @Valid GreenCompanion companion) {
+        return new GreenCompanion(store.removeBadCompanion(id, companion.toDto()));
     }
 }
 

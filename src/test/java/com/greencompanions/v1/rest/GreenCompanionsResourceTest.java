@@ -1,4 +1,4 @@
-package com.greencompanions.v1;
+package com.greencompanions.v1.rest;
 
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.Test;
@@ -7,7 +7,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.is;
 
 @QuarkusTest
-public class GreetingResourceTest {
+public class GreenCompanionsResourceTest {
 
     @Test
     public void testHelloEndpoint() {

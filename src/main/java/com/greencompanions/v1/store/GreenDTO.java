@@ -1,13 +1,16 @@
 package com.greencompanions.v1.store;
 
+import org.hibernate.annotations.Where;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.persistence.*;
-import java.util.Date;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Entity(name = "greens")
 @Table(name = "greens")
 public class GreenDTO {
+    private static final Logger LOG = LoggerFactory.getLogger(GreenDTO.class);
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id", updatable = false, nullable = false)
@@ -29,11 +32,15 @@ public class GreenDTO {
     private Date updatedAt;
 
 
-    @OneToMany(targetEntity=CompanionDTO.class, mappedBy="companion", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
-    private Set<CompanionDTO> goodCompanions;
+    @OneToMany(targetEntity = GoodCompanionDTO.class, mappedBy = "green",  fetch = FetchType.EAGER, cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    @Where(clause="companion_type='GOOD'")
+    private Set<CompanionDTO> goodCompanions = new HashSet<>();
 
-    @OneToMany(targetEntity=CompanionDTO.class, mappedBy="companion", fetch=FetchType.EAGER,  cascade = CascadeType.ALL)
-    private Set<CompanionDTO> badCompanions;
+    @OneToMany(targetEntity = BadCompanionDTO.class, mappedBy = "green", fetch = FetchType.EAGER,  cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    @Where(clause="companion_type='BAD'")
+    private Set<CompanionDTO> badCompanions = new HashSet<>();
 
     public GreenDTO() { }
 
@@ -94,12 +101,13 @@ public class GreenDTO {
         this.goodCompanions = goodCompanions;
     }
 
-    public void addGoodCompanion(CompanionDTO goodCompanion) {
-        this.goodCompanions.add(goodCompanion);
+    public void addGoodCompanion(GreenDTO goodCompanion) {
+        GoodCompanionDTO companionDTO = new GoodCompanionDTO(this, goodCompanion);
+        this.goodCompanions.add(companionDTO);
     }
 
-    public void removeGoodCompanion(CompanionDTO goodCompanion) {
-        this.goodCompanions.remove(goodCompanion);
+    public void removeGoodCompanion(GreenDTO goodCompanion) {
+        removeCompanion(this.goodCompanions, goodCompanion);
     }
 
     public Set<CompanionDTO> getBadCompanions() {
@@ -110,12 +118,13 @@ public class GreenDTO {
         this.badCompanions = badCompanions;
     }
 
-    public void addBadCompanion(CompanionDTO badCompanion) {
-        this.badCompanions.add(badCompanion);
+    public void addBadCompanion(GreenDTO badCompanion) {
+        BadCompanionDTO companionDTO = new BadCompanionDTO(this, badCompanion);
+        this.badCompanions.add(companionDTO);
     }
 
-    public void removeBadCompanion(CompanionDTO badCompanion) {
-        this.badCompanions.remove(badCompanion);
+    public void removeBadCompanion(GreenDTO companion) {
+        removeCompanion(this.badCompanions, companion);
     }
 
     public Date getCreatedAt() {
@@ -159,5 +168,25 @@ public class GreenDTO {
     @Override
     public int hashCode() {
         return Objects.hash(this.id, this.name);
+    }
+
+    @Override
+    public String toString() {
+        return "{id=" + this.id + ", name=" + this.name + "}";
+    }
+
+    private void removeCompanion(Set<CompanionDTO> companions, GreenDTO goodCompanion) {
+        for (Iterator<CompanionDTO> iterator = companions.iterator();
+             iterator.hasNext(); ) {
+            CompanionDTO companionDTO = iterator.next();
+
+            if (companionDTO.getGreen().equals(this) &&
+                    companionDTO.getCompanion().equals(goodCompanion)) {
+                iterator.remove();
+                companionDTO.setGreen(null);
+                companionDTO.setCompanion(null);
+            }
+        }
+
     }
 }

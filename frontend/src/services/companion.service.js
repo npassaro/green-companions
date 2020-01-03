@@ -1,8 +1,4 @@
-export const COMPANION_TYPE = {
-  none: 0,
-  bad: 1,
-  good: 2,
-};
+import { COMPANION_TYPE } from './constants';
 
 export const getCompanionType = (green, selectedGreen) => {
   if(selectedGreen.badCompanionsIds.includes(green.id)) {

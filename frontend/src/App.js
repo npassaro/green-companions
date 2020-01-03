@@ -1,10 +1,9 @@
 import React from 'react';
+import { AddGreen, ListGreens } from './features';
+import { ErrorAlert } from './components';
+import { COMPANION_TYPE } from './services/constants';
+import { getAllGreens, requestCompanion, getCompanionType } from './services';
 import './App.scss';
-import { AddGreen } from './add-green/';
-import { ListGreens } from './list-greens/';
-import { ErrorAlert } from './alerts';
-import { COMPANION_TYPE, getCompanionType, backendUrl } from './constants';
-import { getAllGreens, requestCompanion } from './services';
 
 class App extends React.Component {
   constructor(props) {

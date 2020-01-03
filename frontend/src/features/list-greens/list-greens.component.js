@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './list-greens.scss';
 import { ListGreensItem } from './list-greens-item.component';
+import './list-greens.scss';
 
 export const ListGreens = ({ greens=[], selectedGreen, onClick, onCompanionClick }) => (
   <table className="table table-striped table-hover ListGreens_table">

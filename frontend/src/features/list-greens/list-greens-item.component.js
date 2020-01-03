@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { MONTHS, COMPANION_TYPE, getCompanionType } from '../constants';
+import { MONTHS, COMPANION_TYPE } from 'services/constants';
+import { getCompanionType } from 'services';
 import './list-greens.scss';
 
 

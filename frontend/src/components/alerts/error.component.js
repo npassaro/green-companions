@@ -1,7 +1,7 @@
 import React from 'react';
 
 export class ErrorAlert extends React.Component {
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps) {
     if(prevProps.message !== this.props.message) {
       this.intervalID = setInterval(
         () => this.props.onDismiss(),

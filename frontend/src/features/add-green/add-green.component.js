@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { createGreen } from '../services';
-import { Period } from '../period/period.component';
+import { createGreen } from 'services';
+import { Period } from 'components';
 import './add-green.scss';
 
 

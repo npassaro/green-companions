@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { createGreen } from '../services';
+import { Period } from '../period/period.component';
 import './add-green.scss';
 
-import { Period } from '../period/period.component';
 
 export class AddGreen extends React.Component {
   constructor(props) {
@@ -34,23 +35,9 @@ export class AddGreen extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    fetch('http://localhost:8080/api/1/green-companions', {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-
-      },
-      body: JSON.stringify(this.state)
-    })
-    .then(response => {
-      if (response.ok) {
-        return response.json();
-      }
-      throw response;
-    })
-    .then(green => this.props.onNewGreen(green))
-    .catch(() => this.props.onError('Failed to add a new green. Make sure the name is unique and all mandatory fields are set?'))
+    createGreen(this.state)
+      .then(green => this.props.onNewGreen(green))
+      .catch(() => this.props.onError('Failed to add a new green. Make sure the name is unique and all mandatory fields are set?'))
   }
 
   render() {

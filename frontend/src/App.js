@@ -3,9 +3,8 @@ import './App.scss';
 import { AddGreen } from './add-green/';
 import { ListGreens } from './list-greens/';
 import { ErrorAlert } from './alerts';
-import { COMPANION_TYPE, getCompanionType } from './constants';
-
-
+import { COMPANION_TYPE, getCompanionType, backendUrl } from './constants';
+import { getAllGreens, requestCompanion } from './services';
 
 class App extends React.Component {
   constructor(props) {
@@ -19,7 +18,7 @@ class App extends React.Component {
     this.getAllGreens = this.getAllGreens.bind(this);
     this.handleAddGreen = this.handleAddGreen.bind(this);
     this.handleError = this.handleError.bind(this);
-    this.handleDismiss = this.handleDismiss.bind(this);
+    this.handleDismissError = this.handleDismissError.bind(this);
     this.handleSelectGreen = this.handleSelectGreen.bind(this);
     this.handleCompanionClick = this.handleCompanionClick.bind(this);
     this.requestCompanion = this.requestCompanion.bind(this);
@@ -32,26 +31,12 @@ class App extends React.Component {
   }
 
   requestCompanion(method, type, id, companion) {
-    fetch(`http://localhost:8080/api/1/green-companions/${id}/${type}-companions`, {
-      method: method,
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-
-      },
-      body: JSON.stringify(companion)
-    })
-    .then(response => {
-      if (response.ok) {
-        return response.json();
-      }
-      throw response;
-    })
-    .then(selectedGreen => this.setState({
-      selectedGreen,
-      greens: this.state.greens.map(green => green.id === selectedGreen.id ? selectedGreen : green),
-    } ))
-    .catch((e) => this.handleError(`Failed request on companion id(${companion.id}) to green with id(${id})`));
+    requestCompanion(method, type, id, companion)
+      .then(selectedGreen => this.setState({
+        selectedGreen,
+        greens: this.state.greens.map(green => green.id === selectedGreen.id ? selectedGreen : green),
+      }))
+      .catch((e) => this.handleError(`Failed request on companion id(${companion.id}) to green with id(${id})`));
   }
 
   addCompanion(type, id, companion) {
@@ -63,19 +48,9 @@ class App extends React.Component {
   }
 
   getAllGreens() {
-    fetch('http://localhost:8080/api/1/green-companions', {
-      headers: {
-        'Accept': 'application/json'
-      }
-    })
-    .then(response => {
-      if(response.ok) {
-        return response.json()
-      }
-      throw response;
-    })
-    .then(greens => this.setState({ greens }))
-    .catch(error => this.handleError('Could not fetch greens. Server unavailable.'));
+    getAllGreens()
+      .then(greens => this.setState({ greens }))
+      .catch(error => this.handleError('Could not fetch greens. Server unavailable.'));
   }
 
   handleAddGreen(green) {
@@ -85,8 +60,6 @@ class App extends React.Component {
 
   handleCompanionClick(companion, clickedCompanionType) {
     const { id } = this.state.selectedGreen;
-    console.log('handleCompanionClick#selected', this.state.selectedGreen)
-    console.log('handleCompanionClick#companion', companion)
     const companionType = getCompanionType(companion, this.state.selectedGreen);
 
     switch (companionType) {
@@ -99,7 +72,7 @@ class App extends React.Component {
       default:
         Object
           .entries(COMPANION_TYPE)
-          .filter(([, id]) => id === clickedCompanionType)
+          .filter(([, typeId]) => typeId === clickedCompanionType)
           .map(([type, ]) => this.addCompanion(type, id, companion));
     }
   }
@@ -110,12 +83,12 @@ class App extends React.Component {
     this.setState({ error: error});
   }
 
-  handleDismiss() {
+  handleDismissError() {
     this.setState({ error: null});
   }
 
   handleSelectGreen(green) {
-    if(this.state.selectedGreen && green.id === this.state.selectedGreen.id) {
+    if(green.id === this.state.selectedGreen.id) {
       this.setState({ selectedGreen: {} });
     } else {
       this.setState({ selectedGreen: green });
@@ -126,7 +99,7 @@ class App extends React.Component {
     const { greens, error, selectedGreen } = this.state;
     return (
       <div>
-        <ErrorAlert message={error} onDismiss={this.handleDismiss}/>
+        <ErrorAlert message={error} onDismiss={this.handleDismissError}/>
         <div className="container App">
               <AddGreen
                 onNewGreen={this.handleAddGreen}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Checkbox } from '../checkbox';
-import { MONTHS } from 'constants/months.mapper';
+import { MONTHS } from 'services/constants';
 
 export class Period extends React.Component {
   constructor(props) {

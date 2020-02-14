@@ -63,7 +63,10 @@ public class GreenCompanion {
     }
 
     private Set<Integer> fromCommaSeparated(String items) {
-        return Arrays.stream(items.split(",")).map(Integer::new).collect(Collectors.toSet());
+        if (items.isEmpty()) {
+            return Collections.emptySet();
+        }
+        return Arrays.stream(items.split(",")).map(Integer::valueOf).collect(Collectors.toSet());
     }
     private String toCommaSeparated(Set<Integer> items) {
         return String.join(",", items.stream().map(Object::toString).collect(Collectors.toList()));

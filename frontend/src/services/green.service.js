@@ -1,4 +1,4 @@
-import { backendUrl } from '../constants';
+import { backendUrl } from './constants';
 
 export const createGreen = (green) =>
   fetch(`${backendUrl}/api/1/green-companions`, {

@@ -108,6 +108,6 @@ export class AddGreen extends React.Component {
 }
 
 AddGreen.propTypes = {
-  onNewGreen: PropTypes.object.isRequired,
-  onError: PropTypes.object.isRequired
+  onNewGreen: PropTypes.func.isRequired,
+  onError: PropTypes.func.isRequired
 };

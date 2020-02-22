@@ -58,32 +58,22 @@ class App extends React.Component {
   }
 
   handleCompanionClick(companion, clickedCompanionType) {
-    const { id } = this.state.selectedGreen;
-    const companionType = getCompanionType(companion, this.state.selectedGreen);
+      const { id } = this.state.selectedGreen;
+      const companionType = getCompanionType(companion, this.state.selectedGreen);
 
-    switch (companionType) {
-      case COMPANION_TYPE.good:
-        this.removeCompanion('good', id, companion);
-        break;
-      case COMPANION_TYPE.bad:
-        this.removeCompanion('bad', id, companion);
-        break;
-      default:
-        Object
-          .entries(COMPANION_TYPE)
-          .filter(([, typeId]) => typeId === clickedCompanionType)
-          .map(([type, ]) => this.addCompanion(type, id, companion));
-    }
+      if (companionType === clickedCompanionType) {
+          this.removeCompanion(clickedCompanionType, id, companion);
+      } else {
+          this.addCompanion(clickedCompanionType, id, companion)
+      }
   }
 
-
-
   handleError(error) {
-    this.setState({ error: error});
+    this.setState({ error });
   }
 
   handleDismissError() {
-    this.setState({ error: null});
+    this.setState({ error: null });
   }
 
   handleSelectGreen(green) {

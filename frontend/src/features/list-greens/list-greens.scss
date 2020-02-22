@@ -1,18 +1,29 @@
-.ListGreens_table {
-  margin-top: 34px;
-}
+.ListGreens {
+  &_table {
+    margin-top: 34px;
+  }
 
-.ListGreens_row {
-  &-selected {
-    background-color: rgba(0, 0, 0, 0.3) !important;
+  &_headerRow {
+
+  }
+
+  &_row {
+    font-size: smaller;
+    &-selected {
+      background-color: rgba(0, 0, 0, 0.3) !important;
+    }
+  }
+
+  &_cell:last-of-type {
+    width: 130px;
+  }
+
+  &_monthInitials {
+    margin-left: 2px;
   }
 }
 
-.ListGreens_cell:last-of-type {
-  width: 130px;
-}
-
-.ListGreensItem {
+.btn.ListGreensItem {
   &_typeButton {
     width: 50px;
     padding-top: 0px;

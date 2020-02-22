@@ -1,50 +1,62 @@
 export const MONTHS = {
   jan: {
-    name: 'Jan',
+    initial: 'J',
+    shortName: 'Jan',
     key: 1
   },
   fev: {
-    name: 'Fev',
+    initial: 'F',
+    shortName: 'Fev',
     key: 2
   },
   mar: {
-    name: 'Mar',
+    initial: 'M',
+    shortName: 'Mar',
     key: 3
   },
   apr:{
-    name: 'Apr',
+    initial: 'A',
+    shortName: 'Apr',
     key: 4
   },
   may: {
-    name: 'May',
+    initial: 'M',
+    shortName: 'May',
     key: 5
   },
   jun: {
-    name: 'Jun',
+    initial: 'J',
+    shortName: 'Jun',
     key: 6
   },
   jul: {
-    name: 'Jul',
+    initial: 'J',
+    shortName: 'Jul',
     key: 7
   },
   ago: {
-    name: 'Ago',
+    initial: 'A',
+    shortName: 'Ago',
     key: 8
   },
   sep: {
-    name: 'Sep',
+    initial: 'S',
+    shortName: 'Sep',
     key: 9
   },
   oct: {
-    name: 'Oct',
+    initial: 'O',
+    shortName: 'Oct',
     key: 10
   },
   nov: {
-    name: 'Nov',
+    initial: 'N',
+    shortName: 'Nov',
     key: 11
   },
   dez: {
-    name: 'Dez',
+    initial: 'D',
+    shortName: 'Dez',
     key: 12
   }
 };

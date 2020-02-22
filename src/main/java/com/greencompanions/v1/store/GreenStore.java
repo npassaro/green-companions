@@ -38,14 +38,16 @@ public class GreenStore {
     public GreenDTO addGoodCompanion(Long greenId, GreenDTO companion) {
         GreenDTO green = em.find(GreenDTO.class, greenId);
         GreenDTO greenCompanion = em.find(GreenDTO.class, companion.getId());
+        green.removeBadCompanion(greenCompanion);
+        em.flush();
         green.addGoodCompanion(greenCompanion);
         return green;
     }
 
     @Transactional
-    public GreenDTO removeGoodCompanion(Long greenId, GreenDTO goodCompanion) {
+    public GreenDTO removeGoodCompanion(Long greenId, GreenDTO companion) {
         GreenDTO green = em.find(GreenDTO.class, greenId);
-        green.removeGoodCompanion(goodCompanion);
+        green.removeGoodCompanion(companion);
         return green;
     }
 
@@ -53,14 +55,16 @@ public class GreenStore {
     public GreenDTO addBadCompanion(Long greenId, GreenDTO companion) {
         GreenDTO green = em.find(GreenDTO.class, greenId);
         GreenDTO greenCompanion = em.find(GreenDTO.class, companion.getId());
+        green.removeGoodCompanion(greenCompanion);
+        em.flush();
         green.addBadCompanion(greenCompanion);
         return green;
     }
 
     @Transactional
-    public GreenDTO removeBadCompanion(Long greenId, GreenDTO badCompanion) {
+    public GreenDTO removeBadCompanion(Long greenId, GreenDTO companion) {
         GreenDTO green = em.find(GreenDTO.class, greenId);
-        green.removeBadCompanion(badCompanion);
+        green.removeBadCompanion(companion);
         return green;
     }
 }

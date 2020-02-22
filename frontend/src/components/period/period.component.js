@@ -10,13 +10,13 @@ export class Period extends React.Component {
 
   handleChange(e) {
     const isChecked = e.target.checked;
-    const month = MONTHS[e.target.name];
-    const { name , checkedMonths } = this.props;
+    const month = MONTHS[e.target.shortName];
+    const { shortName , checkedMonths } = this.props;
 
     if (isChecked) {
-      this.props.onChange({[name]: this.addMonth(month.key, checkedMonths) })
+      this.props.onChange({[shortName]: this.addMonth(month.key, checkedMonths) })
     } else {
-      this.props.onChange({[name]: this.removeMonth(month.key, checkedMonths) })
+      this.props.onChange({[shortName]: this.removeMonth(month.key, checkedMonths) })
     }
   }
 
@@ -42,7 +42,7 @@ export class Period extends React.Component {
                 onChange={this.handleChange}
               />
               <label className="form-check-label" key={MONTHS[month].key} htmlFor={month}>
-                {MONTHS[month].name}
+                {MONTHS[month].shortName}
               </label>
             </div>
           ))

@@ -4,8 +4,8 @@ import { ListGreensItem } from './list-greens-item.component';
 import './list-greens.scss';
 
 export const ListGreens = ({ greens=[], selectedGreen, onClick, onCompanionClick }) => (
-  <table className="table table-striped table-hover ListGreens_table">
-    <thead className="thead-dark ListGreens_row">
+  <table className="table table-sm table-striped table-hover ListGreens_table">
+    <thead className="thead-dark ListGreens_headerRow">
       <tr>
         <th className="ListGreens_cell" scope="col">
           Name
@@ -14,13 +14,13 @@ export const ListGreens = ({ greens=[], selectedGreen, onClick, onCompanionClick
           Description
         </th>
         <th className="ListGreens_cell" scope="col">
-          Sow Period
+          <div>Sow</div><div>Period</div>
         </th>
         <th className="ListGreens_cell" scope="col">
-          Grow Period
+          <div>Grow</div><div>Period</div>
         </th>
         <th className="ListGreens_cell" scope="col">
-          Harvest Period
+          <div>Harvest</div><div>Period</div> 
         </th>
         <th className="ListGreens_cell" scope="col">
         </th>

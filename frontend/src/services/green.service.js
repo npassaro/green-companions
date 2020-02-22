@@ -1,4 +1,4 @@
-import { backendUrl } from './constants';
+import { backendUrl, COMPANION_TYPE } from './constants';
 
 export const createGreen = (green) =>
   fetch(`${backendUrl}/api/1/green-companions`, {
@@ -31,19 +31,21 @@ export const getAllGreens = () =>
     throw response;
   })
 
-export const requestCompanion = (method, type, id, companion) =>
-  fetch(`${backendUrl}/api/1/green-companions/${id}/${type}-companions`, {
-    method: method,
-    headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-
-    },
-    body: JSON.stringify(companion)
-  })
-  .then(response => {
-    if (response.ok) {
-      return response.json();
-    }
-    throw response;
-  })
+export const requestCompanion = (method, type, id, companion) => {
+    const typeName = type === COMPANION_TYPE.good ? 'good' : 'bad';
+    return fetch(`${backendUrl}/api/1/green-companions/${id}/${typeName}-companions`,
+      {
+        method: method,
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+      },
+      body: JSON.stringify(companion)
+    })
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      }
+      throw response;
+    });
+};

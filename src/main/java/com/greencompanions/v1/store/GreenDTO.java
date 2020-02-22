@@ -176,8 +176,7 @@ public class GreenDTO {
     }
 
     private void removeCompanion(Set<CompanionDTO> companions, GreenDTO goodCompanion) {
-        for (Iterator<CompanionDTO> iterator = companions.iterator();
-             iterator.hasNext(); ) {
+        for (Iterator<CompanionDTO> iterator = companions.iterator(); iterator.hasNext(); ) {
             CompanionDTO companionDTO = iterator.next();
 
             if (companionDTO.getGreen().equals(this) &&

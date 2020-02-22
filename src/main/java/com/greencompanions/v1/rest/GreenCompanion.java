@@ -6,7 +6,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Objects;
@@ -16,11 +15,8 @@ import java.util.stream.Collectors;
 public class GreenCompanion {
     private static final Logger LOG = LoggerFactory.getLogger(GreenCompanion.class);
     private Long id;
-    @NotEmpty(message = "Please select the period to sow the veggie")
     private Set<Integer> sowPeriod;
-    @NotEmpty(message = "Please select the period to grow the veggie")
     private Set<Integer> growPeriod;
-    @NotEmpty(message = "Please select the period to harvest the veggie")
     private Set<Integer> harvestPeriod;
     @NotBlank(message = "Please add a name to the veggie")
     private String name;
@@ -57,7 +53,7 @@ public class GreenCompanion {
         return companions == null ?
                 Collections.emptySet() :
                 companions.stream()
-                        .map(CompanionDTO::getCompanion)
+                        .map(T::getCompanion)
                         .map(GreenDTO::getId)
                         .collect(Collectors.toSet());
     }

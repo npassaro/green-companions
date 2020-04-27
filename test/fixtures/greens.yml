@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: Green 1
+  description: Some description
+  sow_period: '[2, 5]'
+  grow_period: '[4, 7]'
+  harvest_period: '[6, 10]'
+
+two:
+  name: Green 2
+  description: Some description
+  sow_period: '[2, 5]'
+  grow_period: '[4, 7]'
+  harvest_period: '[6, 10]'

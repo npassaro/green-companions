@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Greens</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Sow period</th>
+      <th>Grow period</th>
+      <th>Harvest period</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @greens.each do |green| %>
+      <tr>
+        <td><%= green.name %></td>
+        <td><%= green.description %></td>
+        <td><%= green.sow_period %></td>
+        <td><%= green.grow_period %></td>
+        <td><%= green.harvest_period %></td>
+        <td><%= link_to 'Show', green %></td>
+        <td><%= link_to 'Edit', edit_green_path(green) %></td>
+        <td><%= link_to 'Destroy', green, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Green', new_green_path %>

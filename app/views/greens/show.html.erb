@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @green.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @green.description %>
+</p>
+
+<p>
+  <strong>Sow period:</strong>
+  <%= @green.sow_period %>
+</p>
+
+<p>
+  <strong>Grow period:</strong>
+  <%= @green.grow_period %>
+</p>
+
+<p>
+  <strong>Harvest period:</strong>
+  <%= @green.harvest_period %>
+</p>
+
+<%= link_to 'Edit', edit_green_path(@green) %> |
+<%= link_to 'Back', greens_path %>

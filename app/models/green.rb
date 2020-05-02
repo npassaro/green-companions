@@ -1,4 +1,8 @@
 class Green < ApplicationRecord
+  has_many :companionships
+  has_many :bad_companions, through: :companionships, source: :companion, source_type: 'BadCompanion'
+  has_many :good_companions, through: :companionships, source: :companion, source_type: 'GoodCompanion'
+
   validates :name, uniqueness: true
 
   after_initialize :initialize_with_empty_range
@@ -17,4 +21,14 @@ class Green < ApplicationRecord
     end
     period
   end
+end
+
+class BadCompanion < Green
+  has_many :companionships, as: :companion
+  has_many :greens, through: :companionships
+end
+
+class GoodCompanion < Green
+  has_many :companionships, as: :companion
+  has_many :greens, through: :companionships
 end

@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_27_132824) do
+ActiveRecord::Schema.define(version: 2020_04_30_143548) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "companionships", force: :cascade do |t|
+    t.bigint "green_id", null: false
+    t.string "companion_type"
+    t.bigint "companion_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["companion_id"], name: "index_companionships_on_companion_id"
+    t.index ["green_id"], name: "index_companionships_on_green_id"
+  end
 
   create_table "greens", force: :cascade do |t|
     t.string "name"
@@ -23,7 +33,9 @@ ActiveRecord::Schema.define(version: 2020_04_27_132824) do
     t.int4range "harvest_period"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["name"], name: "index_green_companions_on_name", unique: true
+    t.index ["name"], name: "index_greens_on_name", unique: true
   end
 
+  add_foreign_key "companionships", "greens"
+  add_foreign_key "companionships", "greens", column: "companion_id"
 end

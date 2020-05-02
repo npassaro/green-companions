@@ -2,7 +2,7 @@ require "application_system_test_case"
 
 class GreensTest < ApplicationSystemTestCase
   setup do
-    @green = greens(:one)
+    @green = greens(:green_one)
   end
 
   test "visiting the index" do

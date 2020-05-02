@@ -2,7 +2,7 @@ require 'test_helper'
 
 class GreensControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @green = greens(:one)
+    @green = greens(:green_one)
   end
 
   test "should get index" do
@@ -17,7 +17,15 @@ class GreensControllerTest < ActionDispatch::IntegrationTest
 
   test "should create green" do
     assert_difference('Green.count') do
-      post greens_url, params: { green: { description: @green.description, grow_period: @green.grow_period, harvest_period: @green.harvest_period, name: @green.name, sow_period: @green.sow_period } }
+      post greens_url, params: {
+        green: {
+          name: "#{@green.name}new",
+          description: @green.description,
+          sow_period: @green.sow_period,
+          grow_period: @green.grow_period,
+          harvest_period: @green.harvest_period
+        }
+      }
     end
 
     assert_redirected_to green_url(Green.last)

@@ -1,11 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  green: one
-  type: "GoodCompanion"
-  companion: one
+companionship_one:
+  green: green_one
+  companion_type: "GoodCompanion"
+  companion: green_two
 
-two:
-  green: one
-  type: "BadCompanion"
-  companion: two
+companionship_two:
+  green: green_one
+  companion_type: "BadCompanion"
+  companion: green_three

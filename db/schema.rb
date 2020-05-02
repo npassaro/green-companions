@@ -10,18 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_30_143548) do
+ActiveRecord::Schema.define(version: 2020_05_02_155754) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "companionships", force: :cascade do |t|
     t.bigint "green_id", null: false
-    t.string "companion_type"
+    t.string "companion_type", null: false
     t.bigint "companion_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["companion_id"], name: "index_companionships_on_companion_id"
+    t.index ["green_id", "companion_id"], name: "companionships_index", unique: true
     t.index ["green_id"], name: "index_companionships_on_green_id"
   end
 
@@ -36,6 +37,6 @@ ActiveRecord::Schema.define(version: 2020_04_30_143548) do
     t.index ["name"], name: "index_greens_on_name", unique: true
   end
 
-  add_foreign_key "companionships", "greens"
   add_foreign_key "companionships", "greens", column: "companion_id"
+  add_foreign_key "companionships", "greens", on_delete: :cascade
 end

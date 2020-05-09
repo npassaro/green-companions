@@ -3,9 +3,9 @@ class CreateGreens < ActiveRecord::Migration[6.0]
     create_table :greens do |t|
       t.string :name
       t.text :description
-      t.int4range :sow_period
-      t.int4range :grow_period
-      t.int4range :harvest_period
+      t.integer :sow_period, array: true, default: []
+      t.integer :grow_period, array: true, default: []
+      t.integer :harvest_period, array: true, default: []
 
       t.timestamps
     end

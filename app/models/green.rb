@@ -1,34 +1,21 @@
 class Green < ApplicationRecord
-  has_many :green_companionships, as: :companion, inverse_of: :green, class_name: 'Companionship'
-  has_many :bad_companions, through: :green_companionships, source: :companion, source_type: 'BadCompanion'
-  has_many :good_companions, through: :green_companionships, source: :companion, source_type: 'GoodCompanion'
+
+
+  has_many :companionships, inverse_of: :green
+  has_many :bad_companions, through: :companionships, source: :companion, source_type: 'BadCompanion'
+  has_many :good_companions, through: :companionships, source: :companion, source_type: 'GoodCompanion'
 
   validates :name, presence: true, uniqueness: true
+  validates :sow_period, months_array: true
+  validates :grow_period, months_array: true
+  validates :harvest_period, months_array: true
 
-  after_initialize :initialize_with_empty_range
+  after_initialize :initialize_with_empty_array
 
   private
-
-  def initialize_with_empty_range
-    self.sow_period = initialize_period_with_empty_range(self.sow_period)
-    self.grow_period = initialize_period_with_empty_range(self.grow_period)
-    self.harvest_period = initialize_period_with_empty_range(self.harvest_period)
-  end
-
-  def initialize_period_with_empty_range(period)
-    if period.nil?
-      Range.new(0, 0)
+    def initialize_with_empty_array
+      self.sow_period = [] if self.sow_period.nil?
+      self.grow_period = [] if self.grow_period.nil?
+      self.harvest_period = [] if self.harvest_period.nil?
     end
-    period
-  end
-end
-
-class BadCompanion < Green
-  has_many :bad_companionships, as: :companion, inverse_of: :companion, class_name: 'Companionship'
-  has_many :greens, through: :bad_companionships
-end
-
-class GoodCompanion < Green
-  has_many :good_companionships, as: :companion, inverse_of: :companion, class_name: 'Companionship'
-  has_many :greens, through: :good_companionships
 end

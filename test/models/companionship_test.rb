@@ -38,7 +38,7 @@ class RelationTest < ActiveSupport::TestCase
   test "add a companion to a green and the green as a companion" do
     assert_difference 'Companionship.count', 2 do
       @green.good_companions << @companion
-      @companion.bad_companions << @green.becomes(BadCompanion)
+      @companion.becomes(Green).bad_companions << @green.becomes(BadCompanion)
     end
   end
 end

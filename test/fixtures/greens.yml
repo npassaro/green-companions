@@ -3,27 +3,27 @@
 green_one:
   name: Green 1
   description: Some description
-  sow_period: '[2, 5]'
-  grow_period: '[4, 7]'
-  harvest_period: '[6, 10]'
+  sow_period: [2, 5]
+  grow_period: [4, 7]
+  harvest_period: [6, 10]
 
 green_two:
   name: Green 2
   description: Some description
-  sow_period: '[2, 5]'
-  grow_period: '[4, 7]'
-  harvest_period: '[6, 10]'
+  sow_period: [2, 5]
+  grow_period: [4, 7]
+  harvest_period: [6, 10]
 
 green_three:
   name: Green 3
   description: Some description
-  sow_period: '[2, 5]'
-  grow_period: '[4, 7]'
-  harvest_period: '[6, 10]'
+  sow_period: [2, 5]
+  grow_period: [4, 7]
+  harvest_period: [6, 10]
 
 green_four:
   name: Green 4
   description: Some description
-  sow_period: '[2, 5]'
-  grow_period: '[4, 7]'
-  harvest_period: '[6, 10]'
+  sow_period: [2, 5]
+  grow_period: [4, 7]
+  harvest_period: [6, 10]

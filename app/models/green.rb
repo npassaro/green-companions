@@ -1,5 +1,6 @@
 class Green < ApplicationRecord
 
+  include Validators
 
   has_many :companionships, inverse_of: :green
   has_many :bad_companions, through: :companionships, source: :companion, source_type: 'BadCompanion'

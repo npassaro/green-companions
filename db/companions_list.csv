@@ -1,0 +1,42 @@
+green,good companion,bad companion,repels
+Basil,"tomatoes, lettuce",Rue,Mosquitoes
+Bush Beans,"Beets, Cabbage, Carrots, Catnip, Cauliflower, Corn, cucumber, Marigolds, potato, Savory, strawberry","Fennel, Garlic, Leeks, Onions, Shallots",
+Pole Beans,"Corn, Marigolds, potato, radish","Beets, Garlic, Kohlrabi, Leeks, Onions, Shallots",
+beetroot,"Broccoli, Brussels Sprout, Bush Beans, Cabbage, Cauliflower, Chard, Kohlrabi, Onions","Charlock, Field Mustard, Pole Beans",
+Borage,"Squash, strawberry",,Tomato Worms
+Broccoli and Brussels Sprout,"Beets, Buckwheat, Calendula, Carrots, Chamomile, Dill, Hyssop, Marigolds, Mints, Nasturtiums, Onions, Rosemary, Sage, Thyme, Wormwood",strawberry,
+Cabbage and Cauliflower,"Broccoli, Brussels Sprout, Celery, Chard, Spinach",strawberry,
+Cantaloupe,Corn,,
+Carrots,"Cabbage, Chives, Early potato, Leeks, Lettuce, Onions, pea, radish, Rosemary, Sage, Salsify, Wormwood",,
+Chives,"Apples, Berries, Carrots, Grapes, pea, Roses, Tomatoes",,Aphids and Japanese Beetles
+Corn,"Beans, cucumber, Early potato, Melons, pea, Pumpkins, Soybeans, Squash",Tomatoes,
+cucumber,"Beans, Cabbage, Early potato, radish, Sunflowers",Late potato,
+Dill,"Broccoli, Brussels Sprout, Cabbage, Cauliflower, Cucumber, Lettuce, Onions",Carrots,
+Eggplant,"Green Beans, Peppers, potato, Tomatoes",,
+Garlic,"Cabbage, Cane Fruits, Fruit Trees, Roses, Tomatoes","pea, Beans","Japanese Beatles and Aphid, Ermine Moths, and Late Potato blight."
+Kale,"Aromatic herbs, Buckwheat, Cabbage Family, Marigolds, Nasturtiums","Pole Beans, strawberry",
+kohlrabi,Cabbage/Cauliflower Companions {except tomatoes},"Fennel, Pole Beans, Tomatoes",
+Lettuce,"Beets, Carrots, Parsnips, radish, strawberry",Cabbage Family,
+Marigolds,All Garden Crops,,"Bean Beetles, Aphids, Potato Bugs, Squash Bugs, Nematodes, and Maggots"
+Marjoram,All Garden Crops,,
+Mustard,"Alfalfa Cover Crops, Fruit Trees, Grapes, Legumes",,
+Nasturtiums,"Apples, Beans, Cabbage Family, Greenhouse Crops, potato, Pumpkins, radish, Squash",,"Aphids, Potato Bugs, Squash Bugs, Striped Pumpkin Beetles, and Mexican Bean Beetles. Destroys whiteflies in greenhoues."
+Onions,"Beets, Cabbage Family, Carrots, Chamomile, Lettuce, Parsnips","Beans, pea",Many insects/pests–especially maggots
+Oregano,All Garden Crops,,Many insects/pests
+Parsley,"Corn, Roses, Tomatoes",,
+Parnips,"Onions, radish, Wormwood",,
+pea,"Beans, Carrots, Corn, cucumber, Early potato, radish, Turnip","Garlic, Leeks, Onions Shallots",
+Peppers,"Basil, Carrots, Eggplant, Onions, Parsley, Tomatoes","Fennel, Kohlrabi",
+potato,"Basil, Beans, Cabbage Family, Corn, Eggplant, Flax, Hemp, Marigolds, pea, Squash","Apples, Birch, Cherries, cucumber, Pumpkins, Raspberries, Sunflowers, Tomatoes, Walnuts",
+radish,"Cervil, cucumber, Lettuce, Melons, pea, Nasturtiums, Root Crops",Hyssop,Cucumber Beetles
+Rosemary,"Beans, Cabbage, Carrots",,"Bean Beetles, Cabbage Moths, and Carrot Flies"
+Sage,"Cabbage Family, Carrots, Tomatoes",cucumber,Cabbage Moths and Carrot Flies
+Soybeans,"Corn, potato",,
+Spinach,"Celery, Cauliflower, Eggplant, strawberry",,
+strawberry,"Borage, Bush Beans, Lettuce, Pyrethrum, Spinach",Cabbage Family,
+Sunflowers,cucumber,potato,
+Swiss Chard,"Bush Beans, kohlrabi, Onions",Pole Beans,
+Tarragon,All Garden Crops,,
+Thyme,All Garden Crops,,Cabbage Moths
+Tomatoes,"Asparagus, Basil, Carrots, Gooseberries, Mustard, Parsley, Onions, Rosemary, Sage, Chives, Bee Balm, Celery, Pepper","Fennel, Kohlrabi, potato, Walnuts, Dill, Corn",
+turnip and Rutabagas,pea,"Knotweed, Mustard",

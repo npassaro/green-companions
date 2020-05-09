@@ -29,9 +29,9 @@ ActiveRecord::Schema.define(version: 2020_05_02_155754) do
   create_table "greens", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.int4range "sow_period"
-    t.int4range "grow_period"
-    t.int4range "harvest_period"
+    t.integer "sow_period", default: [], array: true
+    t.integer "grow_period", default: [], array: true
+    t.integer "harvest_period", default: [], array: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["name"], name: "index_greens_on_name", unique: true

@@ -25,7 +25,6 @@ class GreensController < ApplicationController
   # POST /greens.json
   def create
     @green = Green.new(green_params)
-
     respond_to do |format|
       if @green.save
         format.html { redirect_to @green, notice: 'Green was successfully created.' }
@@ -69,6 +68,6 @@ class GreensController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def green_params
-      params.require(:green).permit(:name, :description, :sow_period, :grow_period, :harvest_period)
+      params.require(:green).permit(:name, :description, sow_period: [], grow_period: [], harvest_period: [])
     end
 end

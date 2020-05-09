@@ -23,17 +23,17 @@
 
   <div class="field">
     <%= form.label :sow_period %>
-    <%= form.text_field :sow_period %>
+    <%= form.collection_check_boxes(:sow_period, array_of_abreviated_months , :first, :last) %>
   </div>
 
   <div class="field">
     <%= form.label :grow_period %>
-    <%= form.text_field :grow_period %>
+    <%= form.collection_check_boxes(:grow_period, array_of_abreviated_months , :first, :last) %>
   </div>
 
   <div class="field">
     <%= form.label :harvest_period %>
-    <%= form.text_field :harvest_period %>
+    <%= form.collection_check_boxes(:harvest_period, array_of_abreviated_months , :first, :last) %>
   </div>
 
   <div class="actions">

@@ -11,32 +11,25 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :description %>
-    <%= form.text_area :description %>
+    <%= form.text_area :description, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :sow_period %>
-    <%= form.collection_check_boxes(:sow_period, array_of_abreviated_months , :first, :last) %>
-  </div>
+  <div class="form-group row">
+    <%= render partial: 'greens/period_checkbox', locals: { form: form, name: :sow_period } %>
 
-  <div class="field">
-    <%= form.label :grow_period %>
-    <%= form.collection_check_boxes(:grow_period, array_of_abreviated_months , :first, :last) %>
-  </div>
+    <%= render partial: 'greens/period_checkbox', locals: { form: form, name: :grow_period } %>
 
-  <div class="field">
-    <%= form.label :harvest_period %>
-    <%= form.collection_check_boxes(:harvest_period, array_of_abreviated_months , :first, :last) %>
+    <%= render partial: 'greens/period_checkbox', locals: { form: form, name: :harvest_period } %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: "btn btn-primary" %>
   </div>
 <% end %>

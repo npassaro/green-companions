@@ -1,0 +1,9 @@
+<%= tag.div class: "col" do %>
+  <%= form.label name %>
+  <%= form.collection_check_boxes(name, array_of_abreviated_months , :first, :last) do |b| %>
+    <%= tag.div class: "form-check" do %>
+      <%= b.check_box(class: "form-check-input")  %>
+      <%= b.label(class: "form-check-label") { b.text } %>
+    <% end %>
+  <% end %>
+<% end %>

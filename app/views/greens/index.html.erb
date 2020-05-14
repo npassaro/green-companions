@@ -2,14 +2,13 @@
 
 <h1>Greens</h1>
 
-<table class="table">
+<table class="table table-sm">
   <thead>
     <tr>
       <th>Name</th>
-      <th>Description</th>
-      <th>Sow period</th>
-      <th>Grow period</th>
-      <th>Harvest period</th>
+      <th>Sow months</th>
+      <th>Grow months</th>
+      <th>Harvest months</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -18,10 +17,9 @@
     <% @greens.each do |green| %>
       <tr>
         <td><%= green.name %></td>
-        <td><%= green.description %></td>
-        <td><%= green.sow_period %></td>
-        <td><%= green.grow_period %></td>
-        <td><%= green.harvest_period %></td>
+        <td><%= period_to_string green.sow_period %></td>
+        <td><%= period_to_string green.grow_period %></td>
+        <td><%= period_to_string green.harvest_period %></td>
         <td>
           <%= link_to green_path(green) do %>
             <%= inline_svg_tag 'bootstrap-icons/icons/eye.svg', class: 'text-info icon', aria: true, title: 'Details' %>

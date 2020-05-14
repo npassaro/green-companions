@@ -2,7 +2,7 @@
 
 <h1>Greens</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Name</th>
@@ -22,9 +22,21 @@
         <td><%= green.sow_period %></td>
         <td><%= green.grow_period %></td>
         <td><%= green.harvest_period %></td>
-        <td><%= link_to 'Show', green %></td>
-        <td><%= link_to 'Edit', edit_green_path(green) %></td>
-        <td><%= link_to 'Destroy', green, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <%= link_to green_path(green) do %>
+            <%= inline_svg_tag 'bootstrap-icons/icons/eye.svg', class: 'text-info icon', aria: true, title: 'Details' %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to edit_green_path(green) do %>
+            <%= inline_svg_tag 'bootstrap-icons/icons/pencil.svg', class: 'text-secondary icon', aria: true, title: 'Edit' %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to green, method: :delete, data: { confirm: 'Are you sure?' } do %>
+            <%= inline_svg_tag 'bootstrap-icons/icons/trash.svg', class: 'text-danger icon', aria: true, title: 'Delete' %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

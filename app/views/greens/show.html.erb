@@ -1,29 +1,32 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @green.name %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @green.description %>
-</p>
-
-<p>
-  <strong>Sow period:</strong>
-  <%= @green.sow_period %>
-</p>
-
-<p>
-  <strong>Grow period:</strong>
-  <%= @green.grow_period %>
-</p>
-
-<p>
-  <strong>Harvest period:</strong>
-  <%= @green.harvest_period %>
-</p>
-
-<%= link_to 'Edit', edit_green_path(@green) %> |
-<%= link_to 'Back', greens_path %>
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h3 class="card-title"><%= @green.name %></h3>
+    <p class="card-text"><%= @green.description %></p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      <h6 class="card-subtitle mb-2 text-muted">Sow period</h6>
+      <div class="text-monospace green__months">
+        <%= period_to_string @green.sow_period %>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <h6 class="card-subtitle mb-2 text-muted">Grow period</h6>
+      <div class="text-monospace green__months">
+        <%= period_to_string @green.grow_period %>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <h6 class="card-subtitle mb-2 text-muted">Harvest period</h6>
+      <div class="text-monospace green__months">
+        <%= period_to_string @green.harvest_period %>
+      </div>
+    </li>
+  </ul>
+  <div class="card-body">
+    <%= link_to 'Edit', edit_green_path(@green), class: 'card-link' %>
+    <%= link_to 'Back', greens_path, class: 'card-link' %>
+  </div>
+</div>

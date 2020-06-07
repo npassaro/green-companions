@@ -2,3 +2,12 @@
   width: 24px;
   height: 24px;
 }
+
+.table-header__text-superscript {
+  vertical-align: super;
+  font-size: xx-small;
+}
+
+.green__months {
+  font-size: small;
+}

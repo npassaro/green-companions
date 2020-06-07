@@ -6,10 +6,10 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Sow months</th>
-      <th>Grow months</th>
-      <th>Harvest months</th>
-      <th colspan="3"></th>
+      <th>Sow <span class="font-italic font-weight-lighter table-header__text-superscript">(month)<span></th>
+      <th>Grow <span class="font-italic font-weight-lighter table-header__text-superscript">(month)<span></th>
+      <th>Harvest <span class="font-italic font-weight-lighter table-header__text-superscript">(month)<span></th>
+      <th></th>
     </tr>
   </thead>
 
@@ -17,20 +17,16 @@
     <% @greens.each do |green| %>
       <tr>
         <td><%= green.name %></td>
-        <td><%= period_to_string green.sow_period %></td>
-        <td><%= period_to_string green.grow_period %></td>
-        <td><%= period_to_string green.harvest_period %></td>
+        <td class="text-monospace green__months"><%= period_to_string green.sow_period %></td>
+        <td class="text-monospace green__months"><%= period_to_string green.grow_period %></td>
+        <td class="text-monospace green__months"><%= period_to_string green.harvest_period %></td>
         <td>
           <%= link_to green_path(green) do %>
             <%= inline_svg_tag 'bootstrap-icons/icons/eye.svg', class: 'text-info icon', aria: true, title: 'Details' %>
           <% end %>
-        </td>
-        <td>
           <%= link_to edit_green_path(green) do %>
             <%= inline_svg_tag 'bootstrap-icons/icons/pencil.svg', class: 'text-secondary icon', aria: true, title: 'Edit' %>
           <% end %>
-        </td>
-        <td>
           <%= link_to green, method: :delete, data: { confirm: 'Are you sure?' } do %>
             <%= inline_svg_tag 'bootstrap-icons/icons/trash.svg', class: 'text-danger icon', aria: true, title: 'Delete' %>
           <% end %>

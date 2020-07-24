@@ -1,4 +1,7 @@
 Rails.application.configure do
+  # Security fix CVE-2020-8185
+  config.middleware.delete ActionDispatch::ActionableExceptions
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.

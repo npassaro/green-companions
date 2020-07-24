@@ -24,6 +24,24 @@
         <%= period_to_string @green.harvest_period %>
       </div>
     </li>
+
+    <li class="list-group-item">
+      <h6 class="card-subtitle mb-2 text-muted">Good companions</h6>
+      <div class="text-monospace green__months">
+        <% @green.good_companions.each do | good | %>
+          <%= good.name %>
+        <% end %>
+      </div>
+    </li>
+
+    <li class="list-group-item">
+      <h6 class="card-subtitle mb-2 text-muted">Bad companions</h6>
+      <div class="text-monospace green__months">
+        <% @green.bad_companions.each do | bad | %>
+          <%= bad.name %>
+        <% end %>
+      </div>
+    </li>
   </ul>
   <div class="card-body">
     <%= link_to 'Edit', edit_green_path(@green), class: 'card-link' %>

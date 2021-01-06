@@ -34,7 +34,7 @@ export class EKSClusterStack extends cdk.Stack {
                 role: workerRole,
                 minCapacity: 1,
                 maxCapacity: 10,
-                instanceType: new ec2.InstanceType('t3.medium'),
+                instanceType: new ec2.InstanceType('t3.micro'),
                 machineImage: new eks.EksOptimizedImage({
                     kubernetesVersion: '1.17',
                     nodeType: eks.NodeType.STANDARD, // without this, incorrect SSM parameter for AMI is resolved
